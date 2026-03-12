@@ -37,3 +37,33 @@ table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:8px;bor
 .graph line{stroke:#9bace0;stroke-width:1.4}
 .drawer-actions{display:flex;gap:8px;margin-bottom:8px}
 #auth-pill{font-size:.72rem}
+
+/* Aesthetic polish */
+.card{position:relative;overflow:hidden;transition:transform .2s ease, box-shadow .2s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(44,62,90,.16)}
+.nav-item,.chip,.cta,.quick-add button{transition:all .18s ease}
+.nav-item:hover,.chip:hover,.quick-add button:hover{transform:translateY(-1px)}
+.cta:hover{filter:brightness(1.05)}
+
+.hero-grid{grid-template-columns:1.6fr 1fr}
+.hero-card{display:grid;grid-template-columns:220px 1fr;gap:14px;background:linear-gradient(135deg,color-mix(in oklab,var(--panel) 90%,white),color-mix(in oklab,var(--chip) 50%,white))}
+.hero-card::after{content:"";position:absolute;right:-46px;top:-46px;width:140px;height:140px;background:color-mix(in oklab,var(--accent) 28%,transparent);border-radius:999px;filter:blur(2px);opacity:.6}
+.hero-photo{width:100%;aspect-ratio:1/1;border-radius:14px;object-fit:cover;box-shadow:var(--shadow)}
+.hero-meta h3{margin:.1rem 0 .35rem;font-size:1.25rem}
+.hero-stats{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.hero-note{font-size:.9rem;color:var(--muted)}
+
+.daily-card{background:linear-gradient(145deg,color-mix(in oklab,var(--panel) 92%,white),color-mix(in oklab,var(--accent) 6%,white))}
+.daily-card li{padding:.25rem 0}
+.timeline li{padding-left:2px}
+
+.graph{background:
+  radial-gradient(circle at 18% 20%, color-mix(in oklab,var(--accent) 16%,transparent), transparent 42%),
+  radial-gradient(circle at 80% 76%, color-mix(in oklab,var(--chip) 95%,transparent), transparent 36%),
+  color-mix(in oklab,var(--chip) 35%,transparent)}
+
+@keyframes gentlePop{from{opacity:.65;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.tab-content.active>.card,.tab-content.active .hero-card,.tab-content.active .daily-card{animation:gentlePop .22s ease both}
+
+@media (max-width:1100px){.hero-grid{grid-template-columns:1fr}.hero-card{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){.hero-card{grid-template-columns:1fr}}

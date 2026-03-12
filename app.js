@@ -49,6 +49,41 @@ const ratName=(id)=>byId('rats',id)?.name||'Unknown';
 const uid=(p)=>`${p}${Date.now()}${Math.floor(Math.random()*1000)}`;
 const date=(d)=>new Date(d).toLocaleString();
 
+const dailyFocusItems = [
+  'Morning health sweep for respiratory watchlist',
+  'Weigh nursery litter and update growth trend',
+  'Refresh profile photos for available pairs',
+  'Validate pairing goals against this week outcomes'
+];
+
+function renderFeaturedRat(){
+  const wrap = $('#featured-rat');
+  const featured = db.data.rats[0];
+  if(!wrap || !featured) return;
+  wrap.innerHTML = `
+    <img class="hero-photo" src="${featured.img}" alt="${featured.name}" />
+    <div class="hero-meta">
+      <p class="badge">🌟 Featured Rat</p>
+      <h3>${featured.name} <span class="badge">${featured.status}</span></h3>
+      <p class="hero-note">${featured.call} · ${featured.reg}</p>
+      <div class="hero-stats">
+        <span class="badge">${featured.sex}</span>
+        <span class="badge">${featured.variety}</span>
+        <span class="badge">${featured.weight}g</span>
+        <span class="badge">Line: ${featured.line}</span>
+        <span class="badge">Genotype: ${featured.genotype || 'n/a'}</span>
+      </div>
+      <p class="hero-note">${featured.notes || 'No notes yet.'}</p>
+    </div>
+  `;
+}
+
+function renderDailyFocus(){
+  const ul = $('#daily-focus');
+  if(!ul) return;
+  ul.innerHTML = dailyFocusItems.map((item)=>`<li>${item}</li>`).join('');
+}
+
 function computeStats(){
   const rats=db.data.rats;
   return [['Total Rats',rats.length],['Bucks',rats.filter(r=>r.sex==='Buck').length],['Does',rats.filter(r=>r.sex==='Doe').length],['Pregnant',rats.filter(r=>r.status==='Pregnant').length],['Litters',db.data.litters.length],['Pairings',db.data.pairings.length],['Health',db.data.healthRecords.length],['Tasks',db.data.tasks.length],['Inventory Alerts',db.data.inventory.filter(i=>i.qty<=i.reorder).length],['Reservations',db.data.reservations.length],['Events',db.data.events.length],['Users',db.data.users.length]];
@@ -217,7 +252,7 @@ async function submitForm(kind,data,editId){
   if(kind==='reservation'){ const x={id:uid('rs'), ...data}; await api.create('reservations',x); db.addEvent('reservation.created',`Reservation for ${x.adopter}`,'reservation',x.id); }
 }
 
-function rerender(){ renderAuth(); renderStats(); renderEvents(); renderQuickAdd(); renderRats(); renderLitters(); renderPairings(); renderLineageGraph(); renderLists(); if(state.currentRatId) renderDrawer(); }
+function rerender(){ renderAuth(); renderFeaturedRat(); renderDailyFocus(); renderStats(); renderEvents(); renderQuickAdd(); renderRats(); renderLitters(); renderPairings(); renderLineageGraph(); renderLists(); if(state.currentRatId) renderDrawer(); }
 
 function renderAuth(){
   const u=db.currentUser(); $('#auth-pill').textContent=`${u.name} (${u.role})`;

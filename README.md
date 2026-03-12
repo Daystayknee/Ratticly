@@ -35,6 +35,12 @@ This iteration targets the next deeper roadmap items:
      - media URL add/list management
      - derived summaries (e.g., weight average)
 
+
+6. **Aesthetic finishing pass**
+   - Added a featured-rat hero card with richer visual hierarchy.
+   - Added daily breeder focus checklist card for dashboard storytelling feel.
+   - Added refined hover/micro-animation polish and improved graph background treatment.
+
 ## Run locally
 
 ```bash
