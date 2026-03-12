@@ -1,23 +1,27 @@
 # Ratticly
 
-Ratticly is a modern breeder management concept app for fancy rat ratteries: life records, genetics tracking, pairing planning, litter outcomes, inventory, placements, finance, and care operations in a polished luxury dashboard style.
+Ratticly is a modern breeder management concept app for fancy rat ratteries: life records, genetics tracking, pairing planning, litter outcomes, inventory, placements, finance, and day-to-day operations in a luxury dashboard style.
 
-## Current Prototype Scope
+## Implemented now (expanded)
 
-This repository contains a runnable static luxury dashboard prototype with:
+This build extends the prototype to cover nearly all breeder workflow categories in-app:
 
-- clean white card panels on ambient pastel glows
-- glass-style overlays, rounded corners, soft shadows, elegant status badges
-- left sidebar tabbed navigation for full ecosystem modules
-- dashboard widgets (stats, timeline, pregnancy rings, growth charts, alerts, quick-add)
-- rat roster profile cards with filter chips
-- litter, pairing, lineage, health, housing, inventory, placements, finance, tasks, reports, memorials, and settings tabs
-- built-in theme modes:
-  - Cloudmilk
-  - Berry Pastel
-  - Mint Glass
-  - Cream Candy
-  - Dark Luxe Breeder Mode
+- Dashboard with quick stats, milestone watch, daily focus, featured rat, and event timeline
+- Rats roster with card/table views + deep profile drawer (12 tabs)
+- Litters, Pairings, Lineage graph, Health, Housing, Inventory, Placements, Finance, Tasks, Journal, Reports, Memorials, and Settings tabs
+- Placements / Sales board with clear For Sale, Reserved, and Sold tags
+- Simulated API layer + multi-user roles (`owner`, `staff`, `viewer`) + mutation audit events
+- Create/edit/delete lifecycle for key records via quick-add forms and drawer controls
+- Multi-image memory uploads per rat profile (stored in local datastore) with timeline media events
+- Milestone tracking (weaning, breeding-age, retirement planning, health/weight watch)
+- Genetics tools:
+  - genotype parser
+  - per-locus Punnett-style odds
+  - pairing COI estimate
+  - trait probability badges
+- Backup controls:
+  - export datastore as JSON
+  - import datastore JSON
 
 ## Run locally
 
@@ -27,11 +31,11 @@ python3 -m http.server 4173 --directory /workspace/Ratticly
 
 Open `http://localhost:4173`.
 
-## Files
+## Core files
 
-- `index.html` — dashboard layout + all major tabs
-- `app.css` — luxury theme system, responsive layout, cards, badges, rings, spark charts
-- `app.js` — seeded breeder data + rendering for widgets and tab interactions
+- `index.html` — app shell, tabs, modal, drawer, graph controls
+- `app.css` — luxury visual system, cards, overlays, graph/gallery styling, responsive behavior
+- `app.js` — datastore, simulated API/auth, CRUD logic, lineage graph, genetics tools, milestones, memory uploads
 - `docs/product-spec.md` — product direction and feature inventory
 - `docs/data-model.md` — relational schema draft
 - `docs/implementation-plan.md` — phased roadmap
