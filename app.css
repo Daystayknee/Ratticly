@@ -79,3 +79,13 @@ table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:8px;bor
 .sale-tag.reserved{background:#fff2df;color:#7a4a17}
 .sale-tag.sold{background:#e9ecf7;color:#374367}
 @media (max-width:1100px){.sales-board{grid-template-columns:1fr}}
+
+.placement-list li{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.placement-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.placement-actions{display:flex;gap:6px;flex-wrap:wrap}
+.tiny-btn{border:1px solid color-mix(in oklab,var(--muted) 25%,#ced5eb);background:var(--panel);color:var(--text);border-radius:999px;padding:4px 8px;font-size:.72rem;cursor:pointer}
+.tiny-btn:hover{background:var(--chip)}
+#placements-summary{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:8px}
+#placements-summary .kpi{background:color-mix(in oklab,var(--chip) 70%,white);border-radius:12px;padding:10px}
+#placements-summary .kpi strong{display:block;font-size:1.15rem}
+@media (max-width:900px){#placements-summary{grid-template-columns:1fr 1fr}}
