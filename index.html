@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ratticly — Luxury Fancy Rat Breeder Dashboard</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body data-theme="cloudmilk">
+    <div class="bg-ambient" aria-hidden="true">
+      <span class="blob blob-blue"></span><span class="blob blob-pink"></span><span class="blob blob-lavender"></span>
+      <span class="blob blob-mint"></span><span class="blob blob-peach"></span><span class="blob blob-butter"></span>
+    </div>
+
+    <div class="app-shell">
+      <aside class="sidebar glass">
+        <h1>🐀 Ratticly</h1>
+        <p class="subtitle">Luxury Breeder OS</p>
+        <nav id="main-nav">
+          <button class="nav-item active" data-tab="dashboard">🏠 Dashboard</button>
+          <button class="nav-item" data-tab="rats">🐁 Rats</button>
+          <button class="nav-item" data-tab="litters">🍼 Litters</button>
+          <button class="nav-item" data-tab="pairings">💞 Pairings</button>
+          <button class="nav-item" data-tab="lineage">🌿 Lineage</button>
+          <button class="nav-item" data-tab="health">🩺 Health</button>
+          <button class="nav-item" data-tab="housing">🏡 Housing</button>
+          <button class="nav-item" data-tab="inventory">📦 Inventory</button>
+          <button class="nav-item" data-tab="placements">🤝 Placements</button>
+          <button class="nav-item" data-tab="finance">💳 Finance</button>
+          <button class="nav-item" data-tab="tasks">✅ Tasks</button>
+          <button class="nav-item" data-tab="reports">📈 Reports</button>
+          <button class="nav-item" data-tab="memorials">🕊️ Memorials</button>
+          <button class="nav-item" data-tab="settings">⚙️ Settings</button>
+        </nav>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar glass">
+          <input id="global-search" type="search" placeholder="Search name, ID, litter, parent, notes..." />
+          <div class="actions">
+            <select id="theme-switcher" class="chip" aria-label="Theme picker">
+              <option value="cloudmilk">Cloudmilk</option><option value="berry">Berry Pastel</option>
+              <option value="mint">Mint Glass</option><option value="cream">Cream Candy</option>
+              <option value="dark">Dark Luxe Breeder Mode</option>
+            </select>
+            <button class="cta" id="open-quick-add">+ Quick Add</button>
+          </div>
+        </header>
+
+        <section class="tab-content active" id="dashboard">
+          <div class="section-head"><h2>Dashboard</h2><p>At-a-glance colony, breeding, health, supplies, and finance intelligence.</p></div>
+          <div class="grid stats-grid" id="stats-grid"></div>
+          <div class="grid three-col">
+            <article class="card"><h3>Upcoming Events Timeline</h3><ul id="events-list" class="timeline"></ul></article>
+            <article class="card"><h3>Pregnancy Tracker</h3><div id="pregnancy-rings" class="rings"></div></article>
+            <article class="card"><h3>Low Stock + Health Alerts</h3><ul id="alerts-list" class="list"></ul></article>
+          </div>
+          <div class="grid two-col">
+            <article class="card"><h3>Mini Growth Charts</h3><div id="growth-charts" class="spark-grid"></div></article>
+            <article class="card">
+              <h3>Quick Add</h3>
+              <div class="quick-add">
+                <button class="qa-btn">Add Rat</button><button class="qa-btn">Add Litter</button><button class="qa-btn">Plan Pairing</button>
+                <button class="qa-btn">Add Weight</button><button class="qa-btn">Add Health Record</button><button class="qa-btn">Add Expense</button>
+                <button class="qa-btn">Add Inventory Item</button><button class="qa-btn">Add Cage</button><button class="qa-btn">Add Task</button><button class="qa-btn">Add Reservation</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="tab-content" id="rats">
+          <div class="section-head"><h2>Rat Roster</h2><p>Interactive roster with search, filters, and profile drawer.</p></div>
+          <article class="card roster-controls">
+            <input id="rat-search" type="search" placeholder="Search name, line, variety, cage..." />
+            <select id="rat-status-filter" class="chip"><option value="all">All Statuses</option><option>Pregnant</option><option>Active Breeder</option><option>Holdback</option></select>
+            <div class="view-toggle" id="view-toggle"><button class="active" data-view="cards">Cards</button><button data-view="table">Table</button></div>
+          </article>
+          <article class="card filter-bar" id="filters"></article>
+          <div class="grid roster-grid" id="rat-cards"></div>
+          <article class="card hidden" id="rat-table-wrap"><table><thead><tr><th>Name</th><th>Sex</th><th>Variety</th><th>Status</th><th>Cage</th><th>Weight</th></tr></thead><tbody id="rat-table-body"></tbody></table></article>
+        </section>
+
+        <section class="tab-content" id="litters"><div class="section-head"><h2>Litter Tracking</h2><p>Overview, milestones, and placement readiness.</p></div><article class="card"><table><thead><tr><th>Code</th><th>Sire</th><th>Dam</th><th>Born</th><th>Alive</th><th>Weaning</th><th>Status</th></tr></thead><tbody id="litter-table"></tbody></table></article></section>
+        <section class="tab-content" id="pairings"><div class="section-head"><h2>Pairing Planner</h2><p>Compatibility, trait goals, risk flags, and due-date estimates.</p></div><div class="grid two-col" id="pairing-cards"></div></section>
+        <section class="tab-content" id="lineage"><div class="section-head"><h2>Family Tree / Lineage</h2><p>Interactive lineage chips open profiles.</p></div><article class="card lineage-tree" id="lineage-tree"></article></section>
+        <section class="tab-content" id="health"><div class="section-head"><h2>Health Records</h2><p>URI episodes, meds, rechecks, and quarantine flags.</p></div><article class="card"><ul class="list" id="health-list"></ul></article></section>
+        <section class="tab-content" id="housing"><div class="section-head"><h2>Housing / Cage Board</h2><p>Occupancy, cleaning cadence, and compatibility notes.</p></div><div class="grid two-col" id="housing-cards"></div></section>
+        <section class="tab-content" id="inventory"><div class="section-head"><h2>Inventory</h2><p>Stock, expiries, and recurring reorder signals.</p></div><article class="card"><ul id="inventory-list" class="list"></ul></article></section>
+        <section class="tab-content" id="placements"><div class="section-head"><h2>Reservations / Placements</h2><p>Waitlist, approved homes, deposits, and assignments.</p></div><article class="card"><ul class="list" id="placements-list"></ul></article></section>
+        <section class="tab-content" id="finance"><div class="section-head"><h2>Finance</h2><p>Income, expenses, and litter profitability snapshot.</p></div><div class="grid two-col" id="finance-cards"></div><article class="card"><h3>Cost Breakdown</h3><div id="finance-bars" class="sparkline bars"></div></article></section>
+        <section class="tab-content" id="tasks"><div class="section-head"><h2>Task / Reminder Center</h2><p>Daily breeder checklist and timed care actions.</p></div><article class="card"><ul class="list" id="task-list"></ul></article></section>
+        <section class="tab-content" id="reports"><div class="section-head"><h2>Reports & Analytics</h2><p>Line outcomes, health trends, and inventory usage.</p></div><article class="card"><ul class="list" id="reports-list"></ul></article></section>
+        <section class="tab-content" id="memorials"><div class="section-head"><h2>Memorial / Retirement</h2><p>Legacy, line impact, and comfort care notes.</p></div><article class="card"><ul class="list" id="memorials-list"></ul></article></section>
+        <section class="tab-content" id="settings"><div class="section-head"><h2>Settings / Admin</h2><p>Custom traits, statuses, exports, permissions, and notifications.</p></div><article class="card"><ul class="list" id="settings-list"></ul></article></section>
+      </main>
+    </div>
+
+    <aside id="rat-drawer" class="drawer hidden">
+      <button id="drawer-close" class="drawer-close">✕</button>
+      <div id="drawer-body"></div>
+    </aside>
+
+    <dialog id="quick-add-modal" class="quick-modal">
+      <h3>Quick Add Action</h3>
+      <p id="modal-copy"></p>
+      <div class="modal-actions"><button id="modal-primary" class="cta">Continue</button><button id="modal-close" class="chip">Close</button></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
