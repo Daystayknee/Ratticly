@@ -23,8 +23,15 @@
           <button class="nav-item" data-tab="pairings">💞 Pairings</button>
           <button class="nav-item" data-tab="lineage">🌿 Lineage</button>
           <button class="nav-item" data-tab="health">🩺 Health</button>
+          <button class="nav-item" data-tab="housing">🏡 Housing</button>
           <button class="nav-item" data-tab="inventory">📦 Inventory</button>
+          <button class="nav-item" data-tab="placements">🤝 Placements</button>
+          <button class="nav-item" data-tab="finance">💳 Finance</button>
           <button class="nav-item" data-tab="tasks">✅ Tasks</button>
+          <button class="nav-item" data-tab="journal">📓 Journal</button>
+          <button class="nav-item" data-tab="reports">📈 Reports</button>
+          <button class="nav-item" data-tab="memorials">🕊️ Memorials</button>
+          <button class="nav-item" data-tab="settings">⚙️ Settings</button>
         </nav>
       </aside>
 
@@ -43,7 +50,7 @@
         </header>
 
         <section class="tab-content active" id="dashboard">
-          <div class="section-head"><h2>Dashboard</h2><p>Simulated API + datastore + mutation timeline.</p></div>
+          <div class="section-head"><h2>Dashboard</h2><p>Complete breeder operations at a glance.</p></div>
           <div class="grid hero-grid">
             <article class="card hero-card" id="featured-rat"></article>
             <article class="card daily-card"><h3>✨ Daily Breeder Focus</h3><ul class="list" id="daily-focus"></ul></article>
@@ -57,7 +64,7 @@
         </section>
 
         <section class="tab-content" id="rats">
-          <div class="section-head"><h2>Rat Roster</h2><p>Full CRUD (create/edit/delete) with optimistic updates.</p></div>
+          <div class="section-head"><h2>Rat Roster</h2><p>Full CRUD with profile history and memories.</p></div>
           <article class="card roster-controls">
             <input id="rat-search" type="search" placeholder="Search name, line, variety, cage..." />
             <select id="rat-status-filter" class="chip"><option value="all">All Statuses</option><option>Pregnant</option><option>Active Breeder</option><option>Holdback</option></select>
@@ -68,36 +75,22 @@
         </section>
 
         <section class="tab-content" id="litters"><div class="section-head"><h2>Litters</h2></div><article class="card"><table><thead><tr><th>Code</th><th>Sire</th><th>Dam</th><th>Born</th><th>Alive</th><th>Status</th></tr></thead><tbody id="litter-table"></tbody></table></article></section>
-
         <section class="tab-content" id="pairings">
-          <div class="section-head"><h2>Pairings</h2><p>COI + genotype-based trait inheritance probabilities.</p></div>
+          <div class="section-head"><h2>Pairings</h2><p>COI + genotype-based trait inheritance.</p></div>
           <div class="grid two-col" id="pairing-cards"></div>
-          <article class="card">
-            <h3>Genetics Calculator</h3>
-            <div class="form-grid">
-              <div class="field"><label>Parent A genotype</label><input id="geno-a" placeholder="Dd rr Mm"/></div>
-              <div class="field"><label>Parent B genotype</label><input id="geno-b" placeholder="dd Rr Mm"/></div>
-              <div class="field full"><button id="run-genetics" class="cta" type="button">Compute offspring odds</button></div>
-            </div>
-            <ul id="genetics-results" class="list"></ul>
-          </article>
+          <article class="card"><h3>Genetics Calculator</h3><div class="form-grid"><div class="field"><label>Parent A genotype</label><input id="geno-a" placeholder="Dd rr Mm"></div><div class="field"><label>Parent B genotype</label><input id="geno-b" placeholder="dd Rr Mm"></div><div class="field full"><button id="run-genetics" class="cta" type="button">Compute offspring odds</button></div></div><ul id="genetics-results" class="list"></ul></article>
         </section>
-
-        <section class="tab-content" id="lineage">
-          <div class="section-head"><h2>Lineage Graph</h2><p>Network renderer with depth filter + health/trait overlays.</p></div>
-          <article class="card">
-            <div class="lineage-controls">
-              <label>Depth <input id="lineage-depth" type="range" min="1" max="5" value="3"/></label>
-              <label><input id="overlay-health" type="checkbox" checked/> Health overlay</label>
-              <label><input id="overlay-traits" type="checkbox" checked/> Trait overlay</label>
-            </div>
-            <svg id="lineage-graph" viewBox="0 0 960 420" class="graph"></svg>
-          </article>
-        </section>
-
+        <section class="tab-content" id="lineage"><div class="section-head"><h2>Lineage Graph</h2></div><article class="card"><div class="lineage-controls"><label>Depth <input id="lineage-depth" type="range" min="1" max="5" value="3"></label><label><input id="overlay-health" type="checkbox" checked> Health overlay</label><label><input id="overlay-traits" type="checkbox" checked> Trait overlay</label></div><svg id="lineage-graph" viewBox="0 0 960 420" class="graph"></svg></article></section>
         <section class="tab-content" id="health"><div class="section-head"><h2>Health</h2></div><article class="card"><ul class="list" id="health-list"></ul></article></section>
-        <section class="tab-content" id="inventory"><div class="section-head"><h2>Inventory</h2></div><article class="card"><ul id="inventory-list" class="list"></ul></article></section>
+        <section class="tab-content" id="housing"><div class="section-head"><h2>Housing</h2></div><article class="card"><ul class="list" id="housing-list"></ul></article></section>
+        <section class="tab-content" id="inventory"><div class="section-head"><h2>Inventory</h2></div><article class="card"><ul class="list" id="inventory-list"></ul></article></section>
+        <section class="tab-content" id="placements"><div class="section-head"><h2>Placements</h2></div><article class="card"><ul class="list" id="placements-list"></ul></article></section>
+        <section class="tab-content" id="finance"><div class="section-head"><h2>Finance</h2></div><article class="card"><ul class="list" id="finance-list"></ul></article></section>
         <section class="tab-content" id="tasks"><div class="section-head"><h2>Tasks</h2></div><article class="card"><ul class="list" id="task-list"></ul></article></section>
+        <section class="tab-content" id="journal"><div class="section-head"><h2>Journal</h2></div><article class="card"><ul class="list" id="journal-list"></ul></article></section>
+        <section class="tab-content" id="reports"><div class="section-head"><h2>Reports</h2></div><article class="card"><ul class="list" id="reports-list"></ul></article></section>
+        <section class="tab-content" id="memorials"><div class="section-head"><h2>Memorials</h2></div><article class="card"><ul class="list" id="memorials-list"></ul></article></section>
+        <section class="tab-content" id="settings"><div class="section-head"><h2>Settings & Backup</h2></div><article class="card"><div class="settings-row"><button id="export-json" class="chip">Export JSON backup</button><input id="import-json" type="file" accept="application/json"></div><ul class="list" id="settings-list"></ul></article></section>
       </main>
     </div>
 
