@@ -9,6 +9,7 @@ This build extends the prototype to cover nearly all breeder workflow categories
 - Dashboard with quick stats, milestone watch, daily focus, featured rat, and event timeline
 - Rats roster with card/table views + deep profile drawer (12 tabs)
 - Litters, Pairings, Lineage graph, Health, Housing, Inventory, Placements, Finance, Tasks, Journal, Reports, Memorials, and Settings tabs
+- Placements / Sales board with clear For Sale, Reserved, and Sold tags
 - Simulated API layer + multi-user roles (`owner`, `staff`, `viewer`) + mutation audit events
 - Create/edit/delete lifecycle for key records via quick-add forms and drawer controls
 - Multi-image memory uploads per rat profile (stored in local datastore) with timeline media events

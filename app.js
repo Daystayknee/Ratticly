@@ -5,9 +5,9 @@ const seed = {
   auth:{currentUserId:'u1'},
   users:[{id:'u1',name:'Owner Admin',role:'owner'},{id:'u2',name:'Caretaker Jess',role:'staff'},{id:'u3',name:'Viewer Kit',role:'viewer'}],
   rats:[
-    { id:'r1', name:'Nova', call:'Novie', reg:'Ratticly Nova Bloom', sex:'Doe', variety:'Rex Dumbo', dob:'2025-04-12', status:'Pregnant', breed:'Eligible', cage:'Maternity-2', weight:391, health:'Watchlist', availability:'Holdback', line:'Velvet Aurora', genotype:'Dd rr Mm', traits:['dumbo','rex'], carriers:['mink'], sireId:'r2', damId:null, temperament:'Sweet', notes:'Strong maternal behavior', photos:[], img:'https://images.unsplash.com/photo-1608152579902-4f9f2e4f8090?auto=format&fit=crop&w=900&q=80' },
-    { id:'r2', name:'Atlas', call:'At', reg:'Ratticly Atlas Crest', sex:'Buck', variety:'Standard', dob:'2025-02-10', status:'Active Breeder', breed:'Eligible', cage:'Buck-Alpha', weight:522, health:'Clear', availability:'Not listed', line:'Crestline', genotype:'dd Rr Mm', traits:['agouti'], carriers:['dumbo'], sireId:null, damId:null, temperament:'Bold', notes:'Stable temperament', photos:[], img:'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=900&q=80' },
-    { id:'r3', name:'Mochi', call:'Moch', reg:'Ratticly Mochi Haze', sex:'Doe', variety:'Velveteen Dumbo', dob:'2025-09-06', status:'Holdback', breed:'Pending', cage:'Growout-F2', weight:287, health:'Clear', availability:'Keeper candidate', line:'Mintglass', genotype:'Dd Rr mm', traits:['dumbo','velveteen'], carriers:['rex'], sireId:'r2', damId:'r1', temperament:'Shy', notes:'Great coat', photos:[], img:'https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=900&q=80' }
+    { id:'r1', name:'Nova', call:'Novie', reg:'Ratticly Nova Bloom', sex:'Doe', variety:'Rex Dumbo', dob:'2025-04-12', status:'Pregnant', breed:'Eligible', cage:'Maternity-2', weight:391, health:'Watchlist', availability:'For Sale', line:'Velvet Aurora', genotype:'Dd rr Mm', traits:['dumbo','rex'], carriers:['mink'], sireId:'r2', damId:null, temperament:'Sweet', notes:'Strong maternal behavior', photos:[], img:'https://images.unsplash.com/photo-1608152579902-4f9f2e4f8090?auto=format&fit=crop&w=900&q=80' },
+    { id:'r2', name:'Atlas', call:'At', reg:'Ratticly Atlas Crest', sex:'Buck', variety:'Standard', dob:'2025-02-10', status:'Active Breeder', breed:'Eligible', cage:'Buck-Alpha', weight:522, health:'Clear', availability:'Sold', line:'Crestline', genotype:'dd Rr Mm', traits:['agouti'], carriers:['dumbo'], sireId:null, damId:null, temperament:'Bold', notes:'Stable temperament', photos:[], img:'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=900&q=80' },
+    { id:'r3', name:'Mochi', call:'Moch', reg:'Ratticly Mochi Haze', sex:'Doe', variety:'Velveteen Dumbo', dob:'2025-09-06', status:'Holdback', breed:'Pending', cage:'Growout-F2', weight:287, health:'Clear', availability:'Reserved', line:'Mintglass', genotype:'Dd Rr mm', traits:['dumbo','velveteen'], carriers:['rex'], sireId:'r2', damId:'r1', temperament:'Shy', notes:'Great coat', photos:[], img:'https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=900&q=80' }
   ],
   litters:[{id:'l1',code:'LIT-2603-NEB',sireId:'r2',damId:'r1',born:'2026-03-01',alive:10,status:'In Nest'}],
   pairings:[{id:'p1',buckId:'r2',doeId:'r1',status:'Approved',goals:'Temperament stability + dumbo expression'}],
@@ -43,6 +43,7 @@ const $=(s)=>document.querySelector(s);
 const make=(tag,html,c='')=>{const e=document.createElement(tag); if(c)e.className=c; e.innerHTML=html; return e;};
 const byId=(k,id)=>db.data[k].find(x=>x.id===id);
 const ratName=(id)=>byId('rats',id)?.name||'Unknown';
+const saleTagClass=(availability)=>{ const v=(availability||'').toLowerCase(); if(v.includes('sold')||v.includes('placed')) return 'sold'; if(v.includes('reserved')) return 'reserved'; if(v.includes('sale')||v.includes('available')) return 'sale'; return ''; };
 const uid=(p)=>`${p}${Date.now()}${Math.floor(Math.random()*1000)}`;
 const date=(d)=>new Date(d).toLocaleString();
 const daysOld=(dob)=>Math.floor((Date.now()-new Date(dob).getTime())/86400000);
@@ -84,7 +85,7 @@ function renderRats(){
   const cards=$('#rat-cards'), tb=$('#rat-table-body'); cards.innerHTML=''; tb.innerHTML='';
   filteredRats().forEach(r=>{
     const ms=computeMilestones(r);
-    const card=make('article',`<img src="${r.img}" alt="${r.name}"><div class="rat-head"><h3>${r.name}</h3><span class="badge">${r.status}</span></div><p class="rat-sub">${r.call} • ${r.reg}</p><p class="rat-sub">${r.sex} • ${r.variety} • DOB ${r.dob}</p><p class="rat-sub">Cage ${r.cage} • ${r.weight}g • ${r.line}</p><div class="rat-tags"><span class="badge">${r.breed}</span><span class="badge ${r.health==='Watchlist'?'warn':'good'}">${r.health}</span><span class="badge">${r.availability}</span>${ms.length?`<span class="badge warn">${ms[0]}</span>`:''}</div>`,'card rat-card');
+    const card=make('article',`<img src="${r.img}" alt="${r.name}"><div class="rat-head"><h3>${r.name}</h3><span class="badge">${r.status}</span></div><p class="rat-sub">${r.call} • ${r.reg}</p><p class="rat-sub">${r.sex} • ${r.variety} • DOB ${r.dob}</p><p class="rat-sub">Cage ${r.cage} • ${r.weight}g • ${r.line}</p><div class="rat-tags"><span class="badge">${r.breed}</span><span class="badge ${r.health==='Watchlist'?'warn':'good'}">${r.health}</span><span class="badge sale-tag ${saleTagClass(r.availability)}">${r.availability}</span>${ms.length?`<span class="badge warn">${ms[0]}</span>`:''}</div>`,'card rat-card');
     card.dataset.id=r.id;
     card.addEventListener('click',()=>openRatDrawer(r.id));
     cards.appendChild(card);
@@ -98,7 +99,11 @@ function renderGenericLists(){
   $('#health-list').innerHTML=db.data.healthRecords.map(h=>`<li>${ratName(h.ratId)} — ${h.diagnosis} (${h.date})</li>`).join('');
   $('#housing-list').innerHTML=db.data.cages.map(c=>`<li>${c.name} (${c.room}) · occupants ${c.occupants.map(ratName).join(', ')||'none'} · clean ${c.nextClean}</li>`).join('');
   $('#inventory-list').innerHTML=db.data.inventory.map(i=>`<li>${i.name}: ${i.qty} ${i.unit} (reorder ${i.reorder})</li>`).join('');
-  $('#placements-list').innerHTML=db.data.reservations.map(r=>`<li>${r.adopter} — ${r.status} (${byId('litters',r.litterId)?.code||'n/a'})</li>`).join('');
+  const saleRats=db.data.rats;
+  $('#placements-available').innerHTML=saleRats.filter(r=>/for sale|available/i.test(r.availability)).map(r=>`<li><span class="badge sale-tag sale">${r.availability}</span> ${r.name} (${r.sex})</li>`).join('')||'<li>No rats currently listed.</li>';
+  $('#placements-reserved').innerHTML=saleRats.filter(r=>/reserved/i.test(r.availability)).map(r=>`<li><span class="badge sale-tag reserved">Reserved</span> ${r.name} · ${r.variety}</li>`).join('')||'<li>No reserved rats.</li>';
+  $('#placements-sold').innerHTML=saleRats.filter(r=>/sold|placed/i.test(r.availability)).map(r=>`<li><span class="badge sale-tag sold">Sold</span> ${r.name} · ${r.variety}</li>`).join('')||'<li>No sold rats yet.</li>';
+
   const income=db.data.reservations.filter(r=>r.status.toLowerCase().includes('paid')).length*150;
   const expense=db.data.expenses.reduce((a,b)=>a+Number(b.amount||0),0);
   $('#finance-list').innerHTML=[`Income from placements: $${income.toFixed(2)}`,`Expenses logged: $${expense.toFixed(2)}`,`Profit/Loss: $${(income-expense).toFixed(2)}`,...db.data.expenses.slice(-4).map(e=>`${e.date} ${e.category}: $${Number(e.amount).toFixed(2)} (${e.note||''})`)].map(x=>`<li>${x}</li>`).join('');

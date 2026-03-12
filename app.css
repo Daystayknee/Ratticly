@@ -74,3 +74,8 @@ table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:8px;bor
 .gallery figcaption{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.2}
 @media (max-width:1100px){.three-col{grid-template-columns:1fr}}
 .settings-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sales-board{grid-template-columns:1fr 1fr 1fr}
+.sale-tag.sale{background:#e7f7ee;color:#17592f}
+.sale-tag.reserved{background:#fff2df;color:#7a4a17}
+.sale-tag.sold{background:#e9ecf7;color:#374367}
+@media (max-width:1100px){.sales-board{grid-template-columns:1fr}}
