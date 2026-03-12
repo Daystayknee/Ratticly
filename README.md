@@ -41,6 +41,14 @@ This iteration targets the next deeper roadmap items:
    - Added daily breeder focus checklist card for dashboard storytelling feel.
    - Added refined hover/micro-animation polish and improved graph background treatment.
 
+
+7. **Milestone watch + memory gallery upgrades**
+   - Improved click reliability for roster cards/profile opening through direct and delegated handlers.
+   - Added milestone watcher logic (weaning windows, breeding-age check, retirement planning, health/weight shifts).
+   - Added dashboard milestone panel and milestone indicators in roster cards.
+   - Added multi-image upload support in profile Photos tab (saved to datastore), with per-image memory labels.
+   - Added timeline/media events when photo memories are uploaded.
+
 ## Run locally
 
 ```bash

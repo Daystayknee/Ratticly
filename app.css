@@ -67,3 +67,9 @@ table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:8px;bor
 
 @media (max-width:1100px){.hero-grid{grid-template-columns:1fr}.hero-card{grid-template-columns:1fr 1fr}}
 @media (max-width:700px){.hero-card{grid-template-columns:1fr}}
+.three-col{grid-template-columns:1.35fr 1fr 1fr}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));gap:8px;margin-top:10px}
+.gallery figure{margin:0;background:color-mix(in oklab,var(--chip) 55%,white);border-radius:10px;padding:6px}
+.gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px}
+.gallery figcaption{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.2}
+@media (max-width:1100px){.three-col{grid-template-columns:1fr}}
