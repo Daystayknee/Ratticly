@@ -4,33 +4,36 @@ Ratticly is a modern breeder management concept app for fancy rat ratteries: lif
 
 ## Implemented in this iteration
 
-This build specifically advances the previously requested high-priority items:
+This iteration targets the next deeper roadmap items:
 
-1. **Real form workflows**
-   - Replaced placeholder quick-add interactions with real forms for:
-     - Rat
-     - Litter
-     - Pairing
-     - Weight
-     - Health
-     - Inventory
-     - Task
-     - Reservation
-   - Added validation and linked entity creation (for example sire/dam links, pairing rat links, weight/health linked to rat, reservation linked to litter).
+1. **Backend/API simulation + multi-user auth roles**
+   - Added an async API layer (`api`) with create/update/remove semantics and simulated network latency.
+   - Added role-based write permissions (`owner`, `staff`, `viewer`), with viewer blocked from writes.
+   - Added user switcher in UI and mutation attribution in the event timeline.
 
-2. **Backend-style data + event timeline (local prototype layer)**
-   - Added a persisted client-side data store (localStorage) as an API/DB stand-in.
-   - All mutations write to an event timeline (`events`) and immediately update widgets and views.
+2. **Edit/Delete + fuller CRUD lifecycle**
+   - Added edit and delete controls for rats in the profile drawer.
+   - Create/edit flows now run through validation and API mutations.
+   - Includes optimistic UI behavior for rat create + rollback on failure.
 
-3. **Deep rat profile tabs**
-   - Rat drawer now contains actual profile tabs:
-     - Overview, Genetics, Health, Weight, Breeding, Relationships,
-       Litters, Temperament, Photos, Notes, Placement, Timeline.
+3. **True lineage graph renderer**
+   - Added SVG lineage graph rendering with:
+     - ancestor depth slider
+     - health overlay toggle
+     - trait overlay toggle
+   - Graph nodes are clickable and open profile drawer context.
 
-4. **Lineage + genetics intelligence**
-   - Replaced static lineage text with interactive lineage branches.
-   - Added simple COI estimation using shared ancestors.
-   - Added trait probability badges on pairings.
+4. **Expanded genetics engine**
+   - Added genotype parser (`Dd rr Mm` style input).
+   - Added per-locus offspring odds calculation using Punnett-style crosses.
+   - Pairings now show both COI estimate and trait probability badges.
+
+5. **Profile tab depth improvements**
+   - Preserved 12-tab profile and expanded tab behavior with:
+     - timeline filter controls
+     - notes editing + save mutation
+     - media URL add/list management
+     - derived summaries (e.g., weight average)
 
 ## Run locally
 
@@ -42,9 +45,9 @@ Open `http://localhost:4173`.
 
 ## Files
 
-- `index.html` — dashboard shell, tabs, profile drawer, and quick-add modal
-- `app.css` — luxury visual system and interactive layout styles
-- `app.js` — data store, renderers, forms, validation, linked creation, and event timeline
+- `index.html` — dashboard shell, tabs, graph controls, profile drawer, quick-add modal
+- `app.css` — luxury visual system, graph/drawer/form styling, responsive layout
+- `app.js` — datastore, API simulation, auth roles, CRUD logic, lineage graph, genetics calculator, profile interactions
 - `docs/product-spec.md` — product direction and feature inventory
 - `docs/data-model.md` — relational schema draft
 - `docs/implementation-plan.md` — phased roadmap
