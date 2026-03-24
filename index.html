@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ratticly — Luxury Fancy Rat Breeder Dashboard</title>
+    <title>Ratticly — Modern Species-Intelligent Breeder Dashboard</title>
     <link rel="stylesheet" href="app.css" />
   </head>
   <body data-theme="cloudmilk">
@@ -14,13 +14,13 @@
 
     <div class="app-shell">
       <aside class="sidebar glass">
-        <h1>🐀 Ratticly</h1>
-        <p class="subtitle">Luxury Breeder OS</p>
+        <h1>🧬 Ratticly</h1>
+        <p class="subtitle">Species-Intelligent Breeder OS</p>
         <nav id="main-nav">
           <button class="nav-item active" data-tab="dashboard">🏠 Dashboard</button>
-          <button class="nav-item" data-tab="rats">🐁 Rats</button>
-          <button class="nav-item" data-tab="litters">🍼 Litters</button>
-          <button class="nav-item" data-tab="pairings">💞 Pairings</button>
+          <button class="nav-item" data-tab="rats">🦄 Animals</button>
+          <button class="nav-item" data-tab="litters">🍼 Offspring Groups</button>
+          <button class="nav-item" data-tab="pairings">💞 Breeding Plans</button>
           <button class="nav-item" data-tab="lineage">🌿 Lineage</button>
           <button class="nav-item" data-tab="health">🩺 Health</button>
           <button class="nav-item" data-tab="housing">🏡 Housing</button>
@@ -50,12 +50,13 @@
         </header>
 
         <section class="tab-content active" id="dashboard">
-          <div class="section-head"><h2>Dashboard</h2><p>Complete breeder operations at a glance.</p></div>
+          <div class="section-head"><h2>Dashboard</h2><p>A modular command center for rats, snakes, horses, and future species profiles.</p></div>
           <div class="grid hero-grid">
             <article class="card hero-card" id="featured-rat"></article>
             <article class="card daily-card"><h3>✨ Daily Breeder Focus</h3><ul class="list" id="daily-focus"></ul></article>
           </div>
           <div class="grid stats-grid" id="stats-grid"></div>
+          <div class="grid three-col" id="species-board"></div>
           <div class="grid three-col">
             <article class="card"><h3>Event Timeline</h3><ul id="events-list" class="timeline"></ul></article>
             <article class="card"><h3>Quick Add</h3><div class="quick-add" id="quick-add-buttons"></div></article>
@@ -64,19 +65,20 @@
         </section>
 
         <section class="tab-content" id="rats">
-          <div class="section-head"><h2>Rat Roster</h2><p>Full CRUD with profile history and memories.</p></div>
+          <div class="section-head"><h2>Animal Roster</h2><p>Unified roster with species-aware cards, filters, and adaptive profile drawers.</p></div>
           <article class="card roster-controls">
-            <input id="rat-search" type="search" placeholder="Search name, line, variety, cage..." />
-            <select id="rat-status-filter" class="chip"><option value="all">All Statuses</option><option>Pregnant</option><option>Active Breeder</option><option>Holdback</option></select>
+            <input id="rat-search" type="search" placeholder="Search name, species, line, facility..." />
+            <select id="rat-status-filter" class="chip"><option value="all">All Statuses</option><option>Pregnant</option><option>Gravid Watch</option><option>In Foal</option><option>Active Breeder</option></select>
+            <select id="animal-species-filter" class="chip"><option value="all">All Species</option><option value="rat">Fancy Rats</option><option value="snake">Snakes</option><option value="horse">Horses</option></select>
             <div class="view-toggle" id="view-toggle"><button class="active" data-view="cards">Cards</button><button data-view="table">Table</button></div>
           </article>
           <div class="grid roster-grid" id="rat-cards"></div>
-          <article class="card hidden" id="rat-table-wrap"><table><thead><tr><th>Name</th><th>Sex</th><th>Variety</th><th>Status</th><th>Cage</th><th>Weight</th></tr></thead><tbody id="rat-table-body"></tbody></table></article>
+          <article class="card hidden" id="rat-table-wrap"><table><thead><tr><th>Name</th><th>Species</th><th>Sex</th><th>Variety</th><th>Status</th><th>Facility</th><th>Metric</th></tr></thead><tbody id="rat-table-body"></tbody></table></article>
         </section>
 
-        <section class="tab-content" id="litters"><div class="section-head"><h2>Litters</h2></div><article class="card"><table><thead><tr><th>Code</th><th>Sire</th><th>Dam</th><th>Born</th><th>Alive</th><th>Status</th></tr></thead><tbody id="litter-table"></tbody></table></article></section>
+        <section class="tab-content" id="litters"><div class="section-head"><h2>Offspring Groups</h2><p>Litters, clutches, foal records, and future species-specific birth groupings.</p></div><article class="card"><table><thead><tr><th>Code</th><th>Species</th><th>Sire</th><th>Dam</th><th>Date</th><th>Count</th><th>Status</th></tr></thead><tbody id="litter-table"></tbody></table></article></section>
         <section class="tab-content" id="pairings">
-          <div class="section-head"><h2>Pairings</h2><p>COI + genotype-based trait inheritance.</p></div>
+          <div class="section-head"><h2>Breeding Plans</h2><p>Species-aware pairing workflows, from litters to clutches to foaling prep.</p></div>
           <div class="grid two-col" id="pairing-cards"></div>
           <article class="card"><h3>Genetics Calculator</h3><div class="form-grid"><div class="field"><label>Parent A genotype</label><input id="geno-a" placeholder="Dd rr Mm"></div><div class="field"><label>Parent B genotype</label><input id="geno-b" placeholder="dd Rr Mm"></div><div class="field full"><button id="run-genetics" class="cta" type="button">Compute offspring odds</button></div></div><ul id="genetics-results" class="list"></ul></article>
         </section>

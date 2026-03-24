@@ -96,3 +96,19 @@ table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:8px;bor
 .toast.warn{border-color:#f5d9a7}
 .toast.error{border-color:#efb3c0}
 @keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.species-card{min-height:220px}
+.species-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.species-metrics{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.species-list{padding-left:18px}
+.species-rat{--species-tint:#c77fb3}
+.species-snake{--species-tint:#3c8c5f}
+.species-horse{--species-tint:#8d623f}
+.badge.species-rat,.species-card.species-rat .badge:first-child{background:#f8e9f4;color:#8b3c70}
+.badge.species-snake,.species-card.species-snake .badge:first-child{background:#e9f7ee;color:#246743}
+.badge.species-horse,.species-card.species-horse .badge:first-child{background:#f6ede5;color:#6b4729}
+.drawer-hero{display:grid;grid-template-columns:120px 1fr;gap:12px;margin:8px 0 14px}
+.drawer-hero img{width:100%;aspect-ratio:1/1;border-radius:14px;object-fit:cover}
+.drawer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini-card{background:color-mix(in oklab,var(--chip) 60%,white);border-radius:12px;padding:10px;display:grid;gap:4px}
+@media (max-width:700px){.drawer-hero,.drawer-grid{grid-template-columns:1fr}}
